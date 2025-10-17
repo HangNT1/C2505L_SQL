@@ -1,0 +1,44 @@
+-- VIEW: 
+-- bảng tạm - khá giống 
+-- Duoc tao ra tu cau lenh select 
+-- no k luu tru du lieu truc tiep ma chi luu du lieu tam thoi duoc sinh ra tu cac cau truy van
+-- Tao view
+-- CREATE VIEW ten_view 
+-- AS 
+-- -- Viet cac cau lenh truy van 
+-- SELECT cot1, cot2
+-- FROM tabl1, table2
+-- WHERE XXX 
+-- ORDER BY XXX
+SELECT * FROM Contracts
+SELECT * FROM OWNERs
+SELECT * FROM Hourses
+-- Đề bài: Tạo view hiển thị danh sách tất cả các chủ nhà bao gồm tên và số điện thoại.
+GO
+CREATE OR ALTER VIEW view_get_all_owners
+AS 
+SELECT fullname, phone
+FROM OWNERs
+GO
+SELECT * FROM view_get_all_owners
+-- Đề bài: Tạo view hiển thị danh sách các căn nhà có diện tích trên 100m² 
+-- và giá lớn hơn 1 tỷ.
+GO
+CREATE OR ALTER VIEW view_danh_sach_nha_theo_dt
+AS 
+SELECT * 
+FROM Hourses 
+WHERE Area > 50 AND PRICE >4500000000.00
+GO 
+SELECT * FROM view_danh_sach_nha_theo_dt
+-- Đề bài: Tạo view hiển thị thông tin hợp đồng có tên người mua bắt đầu bằng chữ “B”.
+go
+CREATE OR ALTER VIEW view_info
+as 
+select c.HouseID,c.BuyerName
+from Contracts c
+where c.BuyerName like 'B%'
+
+go
+select * 
+FROM view_info
